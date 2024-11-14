@@ -1,0 +1,24 @@
+{% extends 'app/example.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div class="main-content">
+        <h1>Posts</h1>
+        <a href="{% url 'add' %}" class="btn btn-primary">Add New Post</a>
+        <ul>
+            {% for post in posts %}
+                <li class="post-item">
+                    <h2>{{ post.title }}</h2>
+                    <p>{{ post.content }}</p>
+                    <form method="post" action="{% url 'delete_post' post.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </li>
+            {% empty %}
+                <p>No posts yet!</p>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
