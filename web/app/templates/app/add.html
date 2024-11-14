@@ -1,0 +1,14 @@
+{% extends 'app/example.html' %}
+
+{% block title %}Add Post{% endblock %}
+
+{% block content %}
+    <div class="add-container">
+        <h1>Add Post</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Add Post</button>
+        </form>
+    </div>
+{% endblock %}
